@@ -21,7 +21,7 @@ Este proyecto es un sitio web para compartir y visualizar documentos en formato 
 
 1. Clona el repositorio:
     ```sh
-    git clone https://github.com/tu-usuario/documentos-compartidos.git
+    git clone https://github.com/itteamlxs/docview-v1.1.0.git
     ```
 2. Navega al directorio del proyecto:
     ```sh
@@ -47,4 +47,4 @@ Este proyecto es un sitio web para compartir y visualizar documentos en formato 
 
 ## Licencia
 
-Este proyecto está licenciado bajo la [MIT License](LICENSE).
+Este proyecto está licenciado bajo la [MIT License](CNE_entropicnetworkssolutions)].
