@@ -27,7 +27,6 @@ document.addEventListener('keydown', function(event) {
 
 
 // Lanza un mensaje de web_push de alert
-
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'notification';
@@ -51,7 +50,7 @@ function showNotification(message) {
 // Deshabilitar el clic derecho del mouse y mostrar un mensaje
 document.addEventListener('contextmenu', function(event) {
     event.preventDefault();
-    showNotification('Acción no permitida');
+    showNotification('Acción no permitida'); //Mensaje del web_push
 });
 
 // Deshabilitar la tecla F12 y mostrar un mensaje
@@ -61,3 +60,44 @@ document.addEventListener('keydown', function(event) {
         showNotification('Acción no permitida');
     }
 });
+
+
+
+
+/*
+
+    //Muestra en hover el nombre completo del archivo
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const documentNames = document.querySelectorAll('.document-name');
+
+    documentNames.forEach(docName => {
+        docName.addEventListener('mouseenter', function(event) {
+            const tooltipText = event.target.getAttribute('data-fullname');
+            if (!tooltipText) return;
+
+            // Crear el elemento del tooltip
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.innerText = tooltipText;
+            
+            // Agregar el tooltip al body
+            document.body.appendChild(tooltip);
+
+            // Posicionar el tooltip
+            const rect = event.target.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2)}px`;
+            tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
+        });
+
+        docName.addEventListener('mouseleave', function() {
+            // Eliminar el tooltip
+            const tooltip = document.querySelector('.tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+        });
+    });
+});
+
+*/

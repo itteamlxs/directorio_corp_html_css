@@ -9,6 +9,8 @@ body {
     flex-wrap: wrap;
 }
 
+/*Estilos del documento*/
+
 .document {
     width: 200px;
     height: 250px;
@@ -26,7 +28,7 @@ body {
 
 .document-icon {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .document-icon img {
@@ -35,12 +37,47 @@ body {
 }
 
 .document-name {
-    text-align: center;
+    text-align: left;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin: 60px;
+    white-space: normal; /* Permite el texto en varias líneas */
+    word-wrap: break-word; /* Permite el ajuste de palabras largas */
+    margin: 20px 0; /* Ajustado para no tener margen excesivo */
+    padding: 0 5px; /* Agregado para mejorar la presentación */
+    height: auto; /* Permite que la altura se ajuste según el contenido */
+    max-height: 4.5em; /* Limita la altura máxima del contenedor */
 }
+
+.document-name p {
+    margin: 0; /* Elimina el margen predeterminado de los párrafos */
+}
+
+.document-name::after {
+    content: attr(data-fullname); /* Usa el atributo data-fullname para el nombre completo */
+    position: absolute;
+    bottom: 100%; /* Posiciona el tooltip arriba del nombre del documento */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    font-size: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+    max-width: 200px; /* Asegura que el tooltip no sea demasiado ancho */
+    text-align: center;
+}
+
+.document-name:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/*Estilos del popup del pdf*/
 
 .popup {
     display: none;
@@ -104,4 +141,18 @@ body {
 
 .notification.show {
     opacity: 1;
+}
+
+
+/*Estilos para el hover del nombre completo*/
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none; /* Evita que el tooltip interfiera con eventos del mouse */
 }
