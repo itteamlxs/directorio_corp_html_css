@@ -3,33 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentos Compartidos</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Coo15 Archivo</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
 
         <!-- Agrega más documentos según sea necesario -->
 
-        <div class="document" onclick="openPopup('ejemplo.pdf')">
+        <div class="document" onclick="openPopup('documents/ejemplo.pdf')">
             <div class="document-icon">
                 <img src="images/pdf.png" alt="PDF Icon">
             </div>
-            <div class="document-name" data-fullname="Ejemplo del documento nuevo">
+            
+            <!--<div class="document-name" data-fullname="Manual de iniciación del SEO - Cooperativa 15 de Septiembre">
+                #si activamos esta linea, el css lanzara un pequenio hover con el nombre del documento. sobre en contenedor
+            -->
+
+            <div class="document-name">
                 Manual de iniciacion del SEO - Cooperativa 15 de Septiembre
             </div>
         </div>
-        <!-- Agrega más documentos según sea necesario -->
+        <!-- Agrega más documentos según sean necesarios -->
 
     </div>
 
     <div class="popup" id="popup">
         <div class="popup-content">
-            <embed src="" type="application/pdf" width="100%" height="100%" />
+            <iframe src="" width="100%" height="100%"></iframe>
             <button onclick="closePopup()">Cerrar</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
