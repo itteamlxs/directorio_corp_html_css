@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos Compartidos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="document" onclick="openPopup('ejemplo.pdf')">
+            <div class="document-icon">
+                <img src="images/pdf.png" alt="PDF Icon">
+            </div>
+            <div class="document-name">
+                Ejemplo de Documento PDF
+            </div>
+        </div>
+        <!-- Agrega más documentos según sea necesario -->
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <embed src="" type="application/pdf" width="100%" height="100%" />
+            <button onclick="closePopup()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
