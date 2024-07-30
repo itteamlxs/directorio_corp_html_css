@@ -1,51 +1,19 @@
-# Documentos Compartidos
+# DocView
 
 ## Descripción
 
-Este proyecto es un sitio web para compartir y visualizar documentos en formato PDF. Los documentos se organizan en bloques con un ícono y nombre, y se abren en una ventana emergente al hacer clic. Se han implementado medidas para mejorar la usabilidad y la seguridad, como la desactivación del clic derecho y la tecla F12, junto con notificaciones push que informan al usuario cuando una acción no está permitida. La interfaz es responsiva y los elementos están estilizados para una experiencia de usuario óptima.
+DocView es una aplicación web que permite visualizar y gestionar documentos en formato PDF en un directorio. Los documentos están organizados en bloques, cada uno con un ícono y el nombre del archivo. Al hacer clic en un documento, se abre en una ventana emergente (popup). La aplicación ofrece una experiencia interactiva con características para prevenir la inspección del código y mostrar el nombre completo del documento en un tooltip.
 
 ## Características
 
-- Organización de documentos en bloques.
-- Visualización de documentos en ventanas emergentes.
-- Desactivación del clic derecho y tecla F12.
-- Notificaciones push para acciones no permitidas.
-- Diseño responsivo y estilizado.
-
-## Requisitos
-
-- Navegador web moderno
-- Conexión a Internet
+- **Visualización de Documentos**: Muestra los documentos en un diseño de cuadrícula con íconos y nombres.
+- **Popup de Visualización**: Al hacer clic en un documento, se abre una ventana emergente para visualizar el contenido en PDF.
+- **Tooltip para Nombres Completos**: Muestra el nombre completo del documento en un tooltip cuando el mouse pasa sobre el nombre.
+- **Prevención de Inspección**: Desactiva el clic derecho y la tecla F12 para evitar la inspección del código fuente.
+- **Notificaciones de Acción No Permitida**: Muestra una notificación cuando se intenta realizar una acción no permitida, como el clic derecho.
 
 ## Instalación
 
 1. Clona el repositorio:
-    ```sh
-    git clone https://github.com/tu-usuario/documentos-compartidos.git
-    ```
-2. Navega al directorio del proyecto:
-    ```sh
-    cd documentos-compartidos
-    ```
-
-## Uso
-
-1. Abre el archivo `index.html` en tu navegador.
-2. Haz clic en los documentos para visualizarlos en la ventana emergente.
-3. Las acciones de clic derecho y la tecla F12 están deshabilitadas para mejorar la seguridad.
-
-## Estructura del Proyecto
-
-- `index.html`: Archivo principal de HTML.
-- `styles.css`: Archivo de estilos CSS.
-- `script.js`: Archivo de JavaScript.
-- `images/`: Carpeta con íconos y otras imágenes.
-
-## Versión
-
-1.1.0
-
-## Licencia
-
-Este proyecto está licenciado bajo la [MIT License](LICENSE).
-
+   ```bash
+   git clone https://github.com/tuusuario/docview.git
