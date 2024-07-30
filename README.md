@@ -25,7 +25,12 @@ Este proyecto es un sitio web para compartir y visualizar documentos en formato 
     ```
 2. Navega al directorio del proyecto:
     ```sh
-    cd documentos-compartidos
+    cd Descargas
+    ```
+    o
+
+    ```sh
+    cd Desktop
     ```
 
 ## Uso
