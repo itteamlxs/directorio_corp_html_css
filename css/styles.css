@@ -1,3 +1,6 @@
+/*colorSelector: https://htmlcolorcodes.com/es/*/
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -124,12 +127,16 @@ body {
 .popup-content button {
     position: absolute;
     top: 50px; /* Cambiado de 10px a 20px */
-    right: 50px; /* Cambiado de 10px a 20px */
+    right: 70px; /* Cambiado de 10px a 20px */
     padding: 10px;
     cursor: pointer;
-    background-color: #ccc;
+    background-color: #29bd00;
     border: none;
-    color: #333;
+    color: #FFF;
+}
+
+.popup-content button: hover{
+    
 }
 
 /*Estilos del web_push alert*/

@@ -1,0 +1,7 @@
+/* politics.css */
+
+/* Intentar ocultar botones de impresión y descarga */
+.pdf-viewer .print-button,
+.pdf-viewer .download-button {
+    display: none !important;
+}

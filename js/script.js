@@ -12,21 +12,35 @@ function closePopup() {
     popup.style.display = 'none';
 }
 
-
-// configuraciones basicas de privacidad
+// Configuraciones básicas de privacidad
 
 // Deshabilitar el clic derecho del mouse
 document.addEventListener('contextmenu', function(event) {
     event.preventDefault();
+    showNotification('Acción no permitida');
 });
 
 // Deshabilitar la tecla F12
 document.addEventListener('keydown', function(event) {
     if (event.key === 'F12') {
         event.preventDefault();
+        showNotification('Acción no permitida');
     }
 });
 
+// Deshabilitar imprimir y descargar en el visor PDF
+document.addEventListener('keydown', function(event) {
+    // Ctrl+P para imprimir
+    if ((event.ctrlKey || event.metaKey) && event.key === 'p') {
+        event.preventDefault();
+        showNotification('Acción no permitida');
+    }
+    // Ctrl+S para guardar
+    if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+        event.preventDefault();
+        showNotification('Acción no permitida');
+    }
+});
 
 // Lanza un mensaje de web_push de alert
 function showNotification(message) {
@@ -52,7 +66,7 @@ function showNotification(message) {
 // Deshabilitar el clic derecho del mouse y mostrar un mensaje
 document.addEventListener('contextmenu', function(event) {
     event.preventDefault();
-    showNotification('Acción no permitida'); //Mensaje del web_push
+    showNotification('Acción no permitida');
 });
 
 // Deshabilitar la tecla F12 y mostrar un mensaje
