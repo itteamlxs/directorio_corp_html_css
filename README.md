@@ -9,6 +9,9 @@ Este proyecto es un sitio web para compartir y visualizar documentos en formato 
 - Desactivación del clic derecho y tecla F12.
 - Notificaciones push para acciones no permitidas.
 - Diseño responsivo y estilizado.
+- Pagina de Login
+- Dashboard para usuarios
+- Dashboard para administradores
 
 ## Requisitos
 
