@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id']) || $_SESSION['nivel'] != 0) {
+    header("Location: index.html");
+    exit();
+}
+
+echo "Bienvenido, usuario " . $_SESSION['username'] . "!";
+?>
+<a href="logout.php">Cerrar sesión</a>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
