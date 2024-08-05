@@ -1,7 +1,3 @@
-Claro, aquí tienes una descripción general para el proyecto DocView:
-
----
-
 **Descripción del Proyecto DocView**
 
 DocView es una plataforma web diseñada para la gestión y visualización de documentos en formato PDF. Su objetivo principal es proporcionar un entorno intuitivo y accesible para usuarios con diferentes niveles de autorización, facilitando la administración y visualización de archivos importantes dentro de una organización o cooperativa.
@@ -26,7 +22,3 @@ DocView es una plataforma web diseñada para la gestión y visualización de doc
 - **Visor de Documentos:** Integración de PDF.js para la visualización de documentos PDF.
 
 DocView está diseñado para ser fácil de instalar y configurar, proporcionando una solución completa para la gestión de documentos en entornos corporativos o cooperativos.
-
----
-
-Esta descripción ofrece una visión clara y concisa de lo que hace el proyecto, sus características principales y las tecnologías utilizadas.
