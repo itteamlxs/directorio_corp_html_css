@@ -3,13 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-08-2024 a las 00:32:06
+-- Tiempo de generación: 06-08-2024 a las 23:39:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
---
---  Documentación de la Base de Datos: Tabla `usuarios`
---
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -44,8 +41,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `username`, `password`, `nivel`, `created_at`) VALUES
 (1, 'admin', 'temporal2024', 1, '2024-08-05 16:36:41'),
-(2, 'user', 'temporal2024', 0, '2024-08-05 16:36:41'),
-(3, 'jgallardo', 'temporal2025', 1, '2024-08-05 22:13:39');
+(2, 'user', 'temporal2024', 0, '2024-08-05 16:36:41');
 
 --
 -- Índices para tablas volcadas
