@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_result($id, $hashed_password, $nivel);
         $stmt->fetch();
 
-        // Verificar la contraseña hasheada
-        if (password_verify($password, $hashed_password)) {
+        // Verificar la contraseña sin hash
+        if ($password === $hashed_password) {
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['nivel'] = $nivel;
@@ -27,17 +27,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: dashboard.php");
             exit();
         } else {
-            echo '<script type="text/javascript">';
-            echo 'alert("Contraseña incorrecta");';
-            echo 'window.location.href = "index.php";';
-            echo '</script>';
+            // Mostrar una alerta y redirigir
+            echo "<script type='text/javascript'>
+                    alert('Contraseña incorrecta');
+                    window.location.href = 'index.php';
+                  </script>";
             exit();
         }
     } else {
-        echo '<script type="text/javascript">';
-        echo 'alert("Usuario no encontrado.");';
-        echo 'window.location.href = "index.php";';
-        echo '</script>';
+        // Mostrar una alerta y redirigir
+        echo "<script type='text/javascript'>
+                alert('Usuario no encontrado');
+                window.location.href = 'index.php';
+              </script>";
         exit();
     }
 
