@@ -1,0 +1,408 @@
+### Documentación del Proyecto DocView
+
+---
+
+## Introducción
+
+DocView es una plataforma de gestión y visualización de documentos PDF que permite a los usuarios ver documentos dentro del navegador. Además, incorpora un sistema de login que gestiona diferentes niveles de acceso: administradores con acceso completo y usuarios con acceso restringido. Esta documentación detalla todos los aspectos del proyecto, desde la implementación inicial del visor de documentos hasta la incorporación del sistema de control de usuarios y roles.
+
+---
+
+## Funcionalidades Principales
+
+1. **Visor de Documentos PDF**:
+   - Visualización de documentos PDF en una ventana emergente.
+   - Integración con PDF.js para una experiencia de visualización enriquecida.
+   - Diseño responsivo para una visualización óptima en diferentes dispositivos.
+
+2. **Sistema de Login**:
+   - Autenticación de usuarios mediante nombre de usuario y contraseña.
+   - Redirección basada en el nivel de usuario: administradores y usuarios.
+   - Sistema de alertas en caso de credenciales incorrectas.
+
+3. **Control de Usuarios y Roles**:
+   - Gestión de usuarios con diferentes niveles de acceso.
+   - Interfaz de administrador y usuario separadas.
+   - Acceso a documentos restringido según el nivel de usuario.
+
+---
+
+## Estructura del Proyecto
+
+### Archivos y Directorios
+
+- **index.php**: Página de inicio y formulario de login.
+- **admin_dashboard.php**: Panel de control para administradores.
+- **user_dashboard.php**: Panel de control para usuarios.
+- **config.php**: Archivo de configuración para la conexión a la base de datos.
+- **logout.php**: Manejo de cierre de sesión.
+- **css/**: Directorio que contiene archivos CSS para el diseño de la aplicación.
+  - `styles.css`: Estilos generales.
+- **js/**: Directorio que contiene archivos JavaScript para la funcionalidad de la aplicación.
+  - `script.js`: Funcionalidades generales.
+- **images/**: Directorio que contiene imágenes utilizadas en la aplicación.
+- **documents/**: Directorio que contiene los documentos PDF.
+
+---
+
+## Implementación del Visor de Documentos
+
+### index.php (Visor de Documentos)
+
+```php
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coo15 Archivo</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/politics.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Documento de ejemplo -->
+        <div class="document" onclick="openPopup('documents/ejemplo.pdf#toolbar=0')">
+            <div class="document-icon">
+                <img src="images/pdf.png" alt="PDF Icon">
+            </div>
+            <div class="document-name">
+                Manual de iniciacion del SEO - Cooperativa 15 de Septiembre
+            </div>
+        </div>
+        <!-- Agregar más documentos según sea necesario -->
+
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <iframe src="" width="100%" height="100%"></iframe>
+            <button onclick="closePopup()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/politics.js"></script>
+</body>
+</html>
+```
+
+### script.js
+
+```javascript
+function openPopup(url) {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'block';
+    popup.querySelector('iframe').src = url;
+}
+
+function closePopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'none';
+    popup.querySelector('iframe').src = '';
+}
+```
+
+### styles.css
+
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.document {
+    cursor: pointer;
+    margin: 10px;
+}
+
+.document-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.document-name {
+    margin-top: 5px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    width: 80%;
+    height: 80%;
+}
+
+.popup-content button {
+    display: block;
+    margin: 20px auto 0 auto;
+}
+```
+
+---
+
+## Implementación del Sistema de Login
+
+### index.php (Formulario de Login)
+
+```php
+<?php
+session_start();
+require 'config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Preparar la consulta
+    $stmt = $conn->prepare("SELECT id, password, nivel FROM usuarios WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    // Verificar si el usuario existe
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($id, $hashed_password, $nivel);
+        $stmt->fetch();
+
+        // Verificar la contraseña sin hash
+        if ($password === $hashed_password) {
+            $_SESSION['user_id'] = $id;
+            $_SESSION['username'] = $username;
+            $_SESSION['nivel'] = $nivel;
+            
+            // Redirigir al usuario a la página principal
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            // Mostrar una alerta y redirigir
+            echo "<script type='text/javascript'>
+                    alert('Contraseña incorrecta');
+                    window.location.href = 'index.php';
+                  </script>";
+            exit();
+        }
+    } else {
+        // Mostrar una alerta y redirigir
+        echo "<script type='text/javascript'>
+                alert('Usuario no encontrado');
+                window.location.href = 'index.php';
+              </script>";
+        exit();
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
+?>
+```
+
+### dashboard.php
+
+```php
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
+
+if ($_SESSION['nivel'] == 1) {
+    header("Location: admin_dashboard.php");
+    exit();
+} else {
+    header("Location: user_dashboard.php");
+    exit();
+}
+?>
+```
+
+### admin_dashboard.php
+
+```php
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id']) || $_SESSION['nivel'] != 1) {
+    header("Location: index.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido, administrador <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
+        <a href="logout.php" class="logout-button">Cerrar sesión</a>
+    </header>
+    <main>
+        <div class="container">
+            <!-- Documentos para administrador -->
+            <div class="document" onclick="openPopup('documents/ejemplo.pdf#toolbar=0')">
+                <div class="document-icon">
+                    <img src="images/pdf.png" alt="PDF Icon">
+                </div>
+                <div class="document-name">
+                    Manual de iniciación del SEO - Cooperativa 15 de Septiembre
+                </div>
+            </div>
+            <!-- Agregar más documentos según sea necesario -->
+        </div>
+    </main>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <iframe src="" width="100%" height="100%"></iframe>
+            <button onclick="closePopup()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+```
+
+### user_dashboard.php
+
+```php
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id']) || $_SESSION['nivel'] != 0) {
+    header("Location: index.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido, usuario <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
+        <a href="logout.php" class="logout-button">Cerrar sesión</a>
+    </header>
+    <main>
+        <div class="container">
+            <!-- Documentos para usuario -->
+            <div class="document" onclick="openPopup('documents/ejemplo.pdf#toolbar=0')">
+                <div class="document-icon">
+                    <img src="images/pdf.png" alt="PDF Icon">
+                </div>
+                <div class="document-name">
+                    Manual de iniciación del SEO -
+
+ Cooperativa 15 de Septiembre
+                </div>
+            </div>
+            <!-- Agregar más documentos según sea necesario -->
+        </div>
+    </main>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <iframe src="" width="100%" height="100%"></iframe>
+            <button onclick="closePopup()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+```
+
+### logout.php
+
+```php
+<?php
+session_start();
+session_unset();
+session_destroy();
+header("Location: index.php");
+exit();
+?>
+```
+
+### config.php
+
+```php
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "docview";
+
+// Crear la conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+```
+
+### Estilos para Botón de Cerrar Sesión (CSS Embebido)
+
+```html
+<style>
+.logout-button {
+    text-decoration: none;
+    color: #000;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.logout-button:hover {
+    background-color: #ccc;
+    color: #000;
+}
+</style>
+```
+
+### Funcionalidades Faltantes y Mejoras
+
+1. **Hashing de Contraseñas**:
+   - Implementar el hash de contraseñas para mayor seguridad.
+   - Utilizar funciones como `password_hash()` y `password_verify()`.
+
+2. **Mejora en la Gestión de Documentos**:
+   - Implementar una base de datos para almacenar y gestionar documentos de manera dinámica.
+   - Crear una interfaz de administración para subir y gestionar documentos.
+
+3. **Optimización del Diseño**:
+   - Hacer el diseño más responsivo y amigable para móviles.
+   - Mejorar la estética de los paneles de administración y usuario.
+
+4. **Seguridad**:
+   - Implementar medidas adicionales de seguridad, como la protección contra ataques CSRF y XSS.
+   - Validar y sanitizar todas las entradas del usuario.
