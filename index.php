@@ -174,9 +174,9 @@
     <div class="page">
         <div class="container">
             <div class="left">
-                <img src="images/logotipo.png" alt="Logo" class="logo">
+                <img src="images/#" alt="Logo" class="logo">
                 <div class="login">Iniciar sesión</div>
-                <div class="eula">Cooperativa 15 de Septiembre LTDA. Archivos Específicos.</div>
+                <div class="eula">Escribe aqui una descripcion de tu contenido.</div>
             </div>
             <div class="right">
                 <svg viewBox="0 0 320 300">

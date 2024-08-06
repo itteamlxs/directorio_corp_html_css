@@ -52,7 +52,7 @@ $welcomeMessage = "¡Bienvenido, administrador " . htmlspecialchars($_SESSION['u
     <header>
         <div class="navbar">
             <!--<div class="logo">Coo15 Archivo</div>-->
-            <div class="logo"><img src="images/nav_var_logo.png" width="180"></div>
+            <div class="logo"><img src="images/#" width="180"></div>
             <div>
                 <span><?php echo $welcomeMessage; ?></span>
                 <a href="logout.php">Cerrar sesión</a>
@@ -67,7 +67,7 @@ $welcomeMessage = "¡Bienvenido, administrador " . htmlspecialchars($_SESSION['u
                 <img src="images/pdf.png" alt="PDF Icon">
             </div>
             <div class="document-name">
-                Manual de iniciacion del SEO - Cooperativa 15 de Septiembre
+                Manual de iniciacion del SEO
             </div>
         </div>
         <!-- Agrega más documentos según sean necesarios -->

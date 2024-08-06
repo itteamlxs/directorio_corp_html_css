@@ -53,7 +53,7 @@ $welcomeMessage = "¡Bienvenido, " . htmlspecialchars($_SESSION['username']) . "
 <body>
     <header>
         <div class="navbar">
-            <div class="logo"><img src="images/nav_var_logo.png" width="180"></div>
+            <div class="logo"><img src="images/#" width="180"></div>
             <!--<h3 class="title">Archivero Coop 15</h3>-->
             <div>
                 <span><?php echo $welcomeMessage; ?></span>
@@ -69,7 +69,7 @@ $welcomeMessage = "¡Bienvenido, " . htmlspecialchars($_SESSION['username']) . "
                 <img src="images/pdf.png" alt="PDF Icon">
             </div>
             <div class="document-name">
-                Manual de iniciacion del SEO - Cooperativa 15 de Septiembre
+                Manual de iniciacion del SEO
             </div>
         </div>
         <!-- Agrega más documentos según sean necesarios -->
